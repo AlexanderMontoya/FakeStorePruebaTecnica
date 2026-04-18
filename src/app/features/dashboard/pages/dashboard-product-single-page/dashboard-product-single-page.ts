@@ -1,0 +1,39 @@
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
+import { ProductModel } from '../../models/product.model';
+import { ProductsManagement } from '../../services/products-management';
+import { LoadingService } from '../../../../shared/services/loading.service';
+import { TitleCasePipe } from '@angular/common';
+
+@Component({
+  selector: 'app-dashboard-product-single-page',
+  imports: [CardModule, TagModule, TitleCasePipe],
+  templateUrl: './dashboard-product-single-page.html',
+  styleUrl: './dashboard-product-single-page.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DashboardProductSinglePage { 
+
+  product = signal<ProductModel.Product | null>(null);
+
+  constructor(
+    private route: ActivatedRoute, 
+    private productsService:ProductsManagement,
+    private loadingService:LoadingService,
+  ) {}
+
+  ngOnInit(){
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id_product'));
+      
+      this.loadingService.show()
+
+      this.productsService.getProduct(id).then((data)=>{
+        this.product.set(data as ProductModel.Product);
+        this.loadingService.hide();
+      })
+    });
+  }
+}

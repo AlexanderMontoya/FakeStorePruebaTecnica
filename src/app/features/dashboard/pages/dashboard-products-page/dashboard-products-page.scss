@@ -1,0 +1,112 @@
+.section{
+  padding: 0px 25px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    padding: 1.2rem 0;
+  
+    &__left {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    &__right {
+      display: flex;
+      gap: 0.75rem;
+      @media only screen and ( max-width : 425px ) {
+        flex-direction: column;
+        gap: 10px;
+        .btn{
+          width: 100%;
+        }
+      }
+    }
+
+    @media only screen and ( max-width : 840px ) {
+      display: grid;
+      gap: 10px;
+    }
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: #1f2937;
+  }
+  
+  .input_search:focus{
+    border-color: black
+  }
+
+  &__table{
+    margin-top: 20px;
+  }
+}
+
+
+.search-box {
+  width: 320px;
+
+  .p-input-icon-left {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+
+.product{
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &__img{
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    img{
+      width: 100%;
+    }
+  }
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.stars-empty {
+  color: #ccc;
+}
+
+.stars-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #f5b301; // amarillo estrellas
+}

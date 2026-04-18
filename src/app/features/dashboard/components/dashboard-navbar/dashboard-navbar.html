@@ -4,17 +4,15 @@
     <div class="navbar__logo">
       <img src="images/fakestore.png" alt="" width="40">
     </div>
-    
+
     <span class="navbar__title">FakeStore</span>
 
-    <button 
-        pButton
-        type="button"
-        [label]="'Productos'"
-        class="p-button-sm"
-        [routerLink]="['productos']"
-        [severity]="isActive('productos') ? 'primary' : 'secondary'">
-    </button>
+    <nav>
+        <ul class="navbar__list">
+            <li>|</li>
+            <li><a class="link" routerLink="productos" routerLinkActive="active">Productos</a></li>
+        </ul>
+    </nav>
 
   </div>
 

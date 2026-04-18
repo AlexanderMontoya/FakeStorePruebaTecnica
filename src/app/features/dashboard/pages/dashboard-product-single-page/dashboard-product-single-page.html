@@ -1,0 +1,69 @@
+<div class="product-detail">
+    @if(product()!){
+        <p-card>
+          <div class="product-detail__container">
+      
+            <!-- Imagen -->
+            <div class="product-detail__image">
+              <img [src]="product()!.image" [alt]="product()!.title" />
+            </div>
+      
+            <!-- Info -->
+            <div class="product-detail__info">
+      
+              <h2 class="title">{{ product()!.title }}</h2>
+      
+              <!-- Rating -->
+              <div class="rating">
+                <div class="stars">
+                  <div 
+                    class="stars-filled"
+                    [style.width.%]="(product()!.rating.rate / 5) * 100">
+                    ★★★★★
+                  </div>
+                  <div class="stars-empty">★★★★★</div>
+                </div>
+                <span>{{ product()!.rating.rate }} ({{ product()!.rating.count }} reviews)</span>
+              </div>
+      
+              <!-- Precio -->
+              <div class="price">
+                ${{ product()!.price }}
+              </div>
+      
+              <!-- Categoría -->
+              <p-tag 
+                [value]="product()!.category | titlecase" 
+                severity="info">
+              </p-tag>
+      
+              <!-- Descripción -->
+              <p class="description">
+                {{ product()!.description }}
+              </p>
+      
+              <!-- Acciones -->
+              <div class="actions">
+                <button 
+                  pButton 
+                  type="button" 
+                  label="Agregar al carrito" 
+                  icon="pi pi-shopping-cart"
+                  class="p-button-success">
+                </button>
+      
+                <button 
+                  pButton 
+                  type="button" 
+                  label="Comprar ahora" 
+                  class="p-button-outlined">
+                </button>
+              </div>
+      
+            </div>
+      
+          </div>
+        </p-card>
+    }
+
+</div>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -12,16 +12,11 @@ import { ButtonModule } from 'primeng/button';
 })
 export class DashboardNavbar { 
   authService = inject(AuthService)
-  private router = inject(Router);
 
   titleNavbar = signal<string>('');
 
   get user(){
     return this.authService.user()
-  }
-
-  isActive(path: string){
-    return this.router.url === `/dashboard/${path}`;
   }
 
   isMenuOpen = false;

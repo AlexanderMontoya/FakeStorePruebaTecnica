@@ -1,1 +1,89 @@
-<p>dashboard-products-page works!</p>,
+<section class="section">
+    <div class="section-header">
+      <div class="section-header__left">
+        <h1 class="title">Catalogo de Productos</h1>
+      </div>
+    </div>
+
+    <p-iconfield>
+        <p-inputicon class="pi pi-search" />
+
+        <input 
+            pInputText 
+            pSize="large"
+            class="input_search"
+            placeholder="Buscar palabra clave..."
+            [ngModel]="search()"
+            (ngModelChange)="search.set($event)"
+            style="width: 100%; font-size: 16px;"
+        />
+
+    </p-iconfield>
+
+    
+    <div class="section__table">
+        <p-table [value]="filteredProducts()" 
+            [tableStyle]="{ 'min-width': '50rem' }"
+            [paginator]="true"
+            [rows]="10"
+            [rowsPerPageOptions]="[10, 25, 50]"
+        >
+            <ng-template #header>
+                <tr>
+                    <th style="width:100px" class="p-3">
+                        ID
+                    </th>
+                    <th pSortableColumn="title" style="width:300px">
+                        NOMBRE
+                        <p-sortIcon field="title" />
+                    </th>
+                    <th pSortableColumn="price">
+                        PRECIO
+                        <p-sortIcon field="price" />
+                    </th>
+                    <th pSortableColumn="category">
+                        CATEGORIA
+                        <p-sortIcon field="category" />
+                    </th>
+                    <th pSortableColumn="rating.rate">
+                        RANKING
+                        <p-sortIcon field="rating.rate" />
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-product>
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>
+                        <a class="product" [routerLink]="product.id">
+                            <div class="product__img">
+                                <img [src]="product.image" [alt]="product.title" width="50">
+                            </div>
+                            {{ product.title }}
+                        </a>
+                    </td>
+                    <td>${{ product.price }}</td>
+                    <td>{{ product.category | titlecase }}</td>
+                    <td>
+                        <div class="rating">
+                            <div class="stars">
+                                <div 
+                                class="stars-filled"
+                                [style.width.%]="(product.rating.rate / 5) * 100">
+                                ★★★★★
+                                </div>
+                                <div class="stars-empty">
+                                ★★★★★
+                                </div>
+                            </div>
+
+                            <span class="rating-text">
+                                {{ product.rating.rate }} ({{ product.rating.count }})
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>
