@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { ProductModel } from '../../models/product.model';
@@ -25,6 +25,7 @@ export class DashboardProductSinglePage {
     private route: ActivatedRoute, 
     private productsService:ProductsManagement,
     private loadingService:LoadingService,
+    private router: Router
   ) {}
 
   ngOnInit(){
@@ -34,8 +35,12 @@ export class DashboardProductSinglePage {
       this.loadingService.show()
 
       this.productsService.getProduct(id).then((data)=>{
-        this.product.set(data as ProductModel.Product);
         this.loadingService.hide();
+        if(data?.id){
+          this.product.set(data as ProductModel.Product);
+        }else{
+          this.router.navigate(['mi-usuario']);
+        }
       })
     });
   }
