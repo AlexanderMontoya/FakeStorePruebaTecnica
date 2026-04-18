@@ -6,10 +6,12 @@ import { ProductModel } from '../../models/product.model';
 import { ProductsManagement } from '../../services/products-management';
 import { LoadingService } from '../../../../shared/services/loading.service';
 import { TitleCasePipe } from '@angular/common';
+import { SkeletonModule } from 'primeng/skeleton';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-dashboard-product-single-page',
-  imports: [CardModule, TagModule, TitleCasePipe],
+  imports: [CardModule, TagModule, TitleCasePipe, SkeletonModule, ButtonModule],
   templateUrl: './dashboard-product-single-page.html',
   styleUrl: './dashboard-product-single-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +19,7 @@ import { TitleCasePipe } from '@angular/common';
 export class DashboardProductSinglePage { 
 
   product = signal<ProductModel.Product | null>(null);
+  loaded = signal<boolean>(false);
 
   constructor(
     private route: ActivatedRoute, 
@@ -35,5 +38,12 @@ export class DashboardProductSinglePage {
         this.loadingService.hide();
       })
     });
+  }
+
+  isLoaded(){
+    this.loaded.set(true)
+    /* setTimeout(()=>{
+      this.loaded.set(true)
+    },250) */
   }
 }

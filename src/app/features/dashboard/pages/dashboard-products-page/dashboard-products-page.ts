@@ -13,10 +13,11 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { ProductsManagement } from '../../services/products-management';
 import { ProductModel } from '../../models/product.model';
 import { RouterLink } from "@angular/router";
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-dashboard-products-page',
-  imports: [TableModule, CommonModule, ButtonModule, FormsModule, InputTextModule, InputGroupModule, InputIconModule, IconFieldModule, RouterLink],
+  imports: [TableModule, CommonModule, ButtonModule, FormsModule, InputTextModule, InputGroupModule, InputIconModule, IconFieldModule, RouterLink, SkeletonModule],
   templateUrl: './dashboard-products-page.html',
   styleUrl: './dashboard-products-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -64,5 +65,22 @@ export class DashboardProductsPage {
       this.products.set(data as ProductModel.Product[]);
       this.loadingService.hide();
     })
+  }
+
+  //FALLBACK FOTOS
+  loadedMap: Record<number, boolean> = {};
+
+  onLoad(id: number) {
+    this.loadedMap[id] = true;
+  }
+
+  onError(event: Event, id: number) {
+    const img = event.target as HTMLImageElement;
+
+    if (!img.src.includes('no-image.jpg')) {
+      img.src = 'images/no-image.jpg';
+    }
+
+    this.loadedMap[id] = true;
   }
 }
