@@ -39,7 +39,7 @@ export class DashboardProductSinglePage {
         if(data?.id){
           this.product.set(data as ProductModel.Product);
         }else{
-          this.router.navigate(['mi-usuario']);
+          this.router.navigate(['dashboard']);
         }
       })
     });
