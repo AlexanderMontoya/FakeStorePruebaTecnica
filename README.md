@@ -1,59 +1,87 @@
 # FakeStorePruebaTecnica
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+Hola, mi nombre es Alexander Josué Montoya Bonifacio, técnico en Computación e Informática, especializado en desarrollo web.
+A continuación, presento la resolución de la prueba técnica solicitada por 4Byte Solutions para el puesto de desarrollador frontend.
 
-## Development server
+Este proyecto fue generado usando [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
 
-To start a local development server, run:
+## Descargar Proyecto
+
+```bash
+git clone https://github.com/AlexanderMontoya/FakeStorePruebaTecnica.git
+```
+
+## Instalar Dependencias
+
+```bash
+npm install
+```
+
+## Environment
+
+Crear el archivo environment.prod.ts dentro de la carpeta environments y utilizar el siguiente formato.
+Reemplazar apiUrl por la URL de la API. Para esta prueba se utilizó la API pública: `https://fakestoreapi.com/`.
+
+```bash
+export const environment = {
+  production: true,
+  apiUrl: "EXAMPLE",
+};
+```
+
+## Servidor de desarrollo
+
+Para iniciar un servidor de desarrollo local, ejecute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
 ## Building
 
-To build the project run:
+Para compilar el proyecto, ejecute:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Esto generará los archivos de producción en el directorio `dist/`.
 
-## Running unit tests
+## Decisiones técnicas
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Estructura del proyecto
+Separé el proyecto en core, shared y features para una mejor organización y escalabilidad.
 
+### Manejo de autenticación
+El usuario al autenticarse, guarda un token en el LocalStorage, debido a su simplicidad y facilidad de implementación..
+
+### Interceptor
+Se implementó un interceptor HTTP para adjuntar automáticamente el token de autenticación en cada solicitud, evitando la duplicación de código y centralizando la lógica.
+
+### Seguridad y rutas
+Implementé un AuthGuard para proteger las rutas privadas, permitiendo el acceso únicamente a usuarios autenticados.
+
+### Manejo de imágenes
+Se implementó un skeleton loader de PrimeNG para mejorar la experiencia de usuario durante la carga de imágenes.
+Además, se agregó un fallback en caso de error, mostrando una imagen por defecto cuando la carga falla.
+
+### Deploy
+Para este proyecto decidi subir mi proyecto a cloudflare, debido a su facilidad de despliegue y automatización del proceso de build.
+
+## Mejoras futuras
+1. Crear un dashboard de inicio para que el usuario pueda visualizar graficos adecuados o una previsualización de lo que es proyecto.
+2. Implementar nuevas secciones, como gestión de ventas y usuarios.
+
+## URL del proyecto desplegado
+El proyecto desplegado se puede visualizar en el siguiente enlace: [Fake Store Prueba Tecnica](https://fakestorepruebatecnica.pages.dev/)
+
+Credenciales de prueba:
+
+Usuario:
 ```bash
-ng test
+johnd
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+Contraseña:
 ```bash
-ng e2e
+m38rmF$
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
