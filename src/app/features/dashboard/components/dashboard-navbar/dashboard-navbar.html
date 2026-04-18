@@ -1,0 +1,40 @@
+<nav class="navbar">
+  <div class="navbar__brand">
+
+    <div class="navbar__logo">
+      <img src="images/fakestore.png" alt="" width="40">
+    </div>
+    
+    <span class="navbar__title">FakeStore</span>
+
+    <button 
+        pButton
+        type="button"
+        [label]="'Productos'"
+        class="p-button-sm"
+        [routerLink]="['productos']"
+        [severity]="isActive('productos') ? 'primary' : 'secondary'">
+    </button>
+
+  </div>
+
+  <div class="navbar__actions">
+    <div class="navbar__user" (click)="toggleMenu()">
+      <div class="navbar__user-info">
+        <span class="navbar__user-name">{{ user?.name_user }}</span>
+      </div>
+      <div class="navbar__avatar" aria-label="Perfil de usuario">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+      </div>
+
+      @if(isMenuOpen){
+        <div class="navbar__dropdown">
+          <button [routerLink]="['/dashboard']">Dashboard</button>
+          <button (click)="logout()">Cerrar sesión</button>
+        </div>
+      }
+    </div>
+  </div>
+</nav>

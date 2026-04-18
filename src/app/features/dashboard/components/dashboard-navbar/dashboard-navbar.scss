@@ -1,0 +1,138 @@
+// Variables
+$primary-blue: #3b5bdb;
+$text-dark: #1a1a2e;
+$text-muted: #6b7280;
+$bg-white: #ffffff;
+$bg-light: #f5f6fa;
+$border-color: #e5e7eb;
+$shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+
+
+// Navbar
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 64px;
+  padding: 0 24px;
+  background-color: $bg-white;
+  border-bottom: 1px solid $border-color;
+  box-shadow: $shadow;
+
+  // Brand
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-dark;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  // Actions
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  // User
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    //padding: 4px 8px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+  }
+
+  &__user-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $text-dark;
+    line-height: 1.2;
+  }
+
+  &__user-role {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: $text-muted;
+    line-height: 1.2;
+  }
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: $bg-light;
+    border: 1.5px solid $primary-blue;
+    border-radius: 50%;
+    color: $primary-blue;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease;
+  }
+  
+
+  .navbar__dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 1000;
+  }
+
+  .navbar__dropdown button {
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .navbar__dropdown button:hover {
+    background: #f5f5f5;
+  }
+}

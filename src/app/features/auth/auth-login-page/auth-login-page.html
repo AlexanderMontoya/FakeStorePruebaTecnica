@@ -1,0 +1,69 @@
+<main class="main_login">
+    <div class="login-card">
+
+        <div class="login-icon">
+            <img src="images/fakestore.png" alt="" width="60">
+        </div>
+
+        <h2>Bienvenido</h2>
+        <p class="subtitle">
+        Ingresa tus credenciales para acceder al sistema
+        </p>
+
+        <form [formGroup]="user" (ngSubmit)="submitLogin()" class="form">
+            <div class="form-group">
+                <label>Usuario</label>
+    
+                <p-iconfield>
+                    <p-inputicon class="pi pi-user" />
+                    <input
+                    pInputText
+                    type="text"
+                    placeholder="Introduce tu nombre de usuario" formControlName="name_user">
+                </p-iconfield>
+                
+                @if(errors()[0].state){
+                    <span class="form_error">{{ errors()[0].descriptionError }}</span>
+                }
+                @if(name_user.errors?.['required'] && name_user.touched){
+                    <span class="form_error">El nombre del usuario es obligatorio.</span>
+                }
+                @if (user.get('name_user')?.errors?.['pattern']) {
+                    <span class="form_error">Formato Incorrecto (Solo letras, numeros y guión bajo)</span>
+                }
+            </div>
+    
+            <div class="form-group">
+    
+                <label>Contraseña</label>
+    
+                <p-iconfield>
+                    <p-inputicon class="pi pi-lock" />
+                    <p-password placeholder="Introduce tu contraseña" [toggleMask]="true" [feedback]="false" style="width: 100%;" class="pPassword" formControlName="password"/>
+                </p-iconfield>
+                
+                @if(password.errors?.['required'] && password.touched){
+                    <span class="form_error">La contraseña es obligatoria.</span>
+                }
+                @if(password.errors?.['minlength'] && !password.pristine){
+                    <span class="form_error">
+                        La contraseña tiene que contener minimo {{password.errors?.['minlength']?.requiredLength}} caracteres*
+                    </span>
+                }
+            </div>
+    
+            <button
+            pButton
+            label="Iniciar Sesión"
+            icon="pi pi-sign-in"
+            class="login-btn"
+            [disabled]="!user.valid">
+            </button>
+        </form>
+
+    </div>
+
+  <div class="footer">
+    © 2026 Fake Store. Todos los derechos reservados. 
+  </div>
+</main>
